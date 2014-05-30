@@ -1,10 +1,12 @@
 package com.nerdwin15.stash.webhook;
 
+import com.atlassian.bitbucket.event.branch.BranchChangedEvent;
+import com.atlassian.bitbucket.event.branch.BranchDeletedEvent;
 import com.atlassian.bitbucket.event.pull.PullRequestMergedEvent;
 import com.atlassian.bitbucket.event.repository.RepositoryPushEvent;
-import com.atlassian.event.api.EventListener;
 import com.atlassian.bitbucket.event.repository.RepositoryRefsChangedEvent;
 import com.atlassian.bitbucket.repository.RefChange;
+import com.atlassian.event.api.EventListener;
 import com.nerdwin15.stash.webhook.service.SettingsService;
 import com.nerdwin15.stash.webhook.service.eligibility.EligibilityFilterChain;
 import com.nerdwin15.stash.webhook.service.eligibility.EventContext;
@@ -45,6 +47,10 @@ public class RepositoryChangeListener {
   public void onRefsChangedEvent(RepositoryRefsChangedEvent event) {
     if (settingsService.getSettings(event.getRepository()) == null) {
       return;
+    }
+
+    if (event instanceof BranchChangedEvent || event instanceof BranchDeletedEvent) {
+        return;
     }
 
     for (RefChange refCh : event.getRefChanges()) {
