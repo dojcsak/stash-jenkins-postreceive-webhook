@@ -88,6 +88,19 @@
         {(($errors) ? '<div class="error">' + $errors['branchOptionsBranches'] + '</div>' : '')|noAutoescape}
     </div>
     
+    <hr />
+    
+    <h3>{stash_i18n('stash.webhook.jenkinsAutojob.label', 'Jenkins Autojob')}</h3>
+    
+    {call widget.aui.form.checkbox}
+    	{param id: 'autojobEnabled' /}
+        {param checked: $config['autojobEnabled'] /}
+        {param labelContent}
+            {stash_i18n('stash.webhook.autojobEnabled.label', 'Enable Jenkins Autojob')}
+        {/param}
+        {param description: stash_i18n('stash.webhook.autojobEnabled.description', 'Automatically create or delete a jenkins job when a branch is created or deleted.') /}
+    {/call}
+    
     <script>
         require('plugin/jenkins/test').onReady();
     </script>

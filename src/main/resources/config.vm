@@ -1,0 +1,28 @@
+<html>
+	<head>
+		<title>Stash Webhook to Jenkins Autojob Config</title>
+		<meta name="decorator" content="atl.admin">
+		$webResourceManager.requireResource("com.nerdwin15.stash-stash-webhook-jenkins:resources")
+		<meta name="application-base-url" content="$applicationProperties.getBaseUrl()">
+	</head>
+	<body>
+		<script type="text/javascript">
+	      	var baseUrl = "$applicationProperties.getBaseUrl()";
+	    </script>
+	    <h1>Stash Webhook to Jenkins Autojob Config</h1>
+	    <div id="aui-message-bar"></div>
+		<form id="config" class="aui">
+			<div class="field-group">
+				<label for="executablePath">Jenkins autojobs executable path:<span class="aui-icon icon-required">required</span></label>
+				<input type="text" id="executablePath" name="executablePath" class="text">				
+			</div>
+			<div class="field-group">
+				<label for="configHome">Jenkins autojobs config home:<span class="aui-icon icon-required">required</span></label>
+				<input type="text" id="configHome" name="configHome" class="text">				
+			</div>
+			<div class="field-group">
+				<input type="submit" value="Save" class="button">
+			</div>
+		</form>
+	</body>
+</html>
