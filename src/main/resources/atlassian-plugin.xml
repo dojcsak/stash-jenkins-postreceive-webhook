@@ -84,13 +84,13 @@
         <dependency>${project.groupId}-${project.artifactId}:jenkins-pr-triggerbutton</dependency>
     </web-item>
 		
-	<web-item key="stash-menu-item" name="Stash Webhook to Jenkins Autojob" section="atl.admin/admin-plugins-section" weight="100" application="stash">
-  		<description>Link to stash-webhook-jenkins-config page.</description>
-  		<label key="Stash Webhook to Jenkins Autojob Config">Stash Webhook to Jenkins Autojob</label>label>
+	<web-item key="stash-menu-item" name="Stash Webhook to Jenkins" section="atl.admin/admin-plugins-section" weight="100" application="stash">
+  		<description>Link to Stash Webhook to Jenkins plugin config page.</description>
+  		<label key="Stash Webhook to Jenkins config">Stash Webhook to Jenkins</label>label>
   		<link linkId="stash-webhook-jenkins-config-link">/plugins/servlet/stash-webhook-jenkins/config</link>
 	</web-item> 
 	
-    <web-resource name="Jenkins Autojob Config Resources" key="resources">
+    <web-resource name="Stash Webhook to Jenkins Config Resources" key="resources">
 	  	<dependency>com.atlassian.auiplugin:ajs</dependency>
 	  	<resource type="download" name="config.js" location="config.js"/>
 	</web-resource> 
