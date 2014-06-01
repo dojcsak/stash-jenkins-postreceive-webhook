@@ -21,7 +21,8 @@
 				<input type="text" id="configHome" name="configHome" class="text">				
 			</div>
 			<div class="field-group">
-				<input type="submit" value="Save" class="button">
+				<input id="submit" class="aui-button aui-button-primary" type="submit" accesskey="s" value="Save" name="submit">
+				<a id="cancel" class="aui-button aui-button-link cancel" tabindex="0" autocomplete="off" href="/stash/admin" accesskey="c" name="cancel">Cancel</a>
 			</div>
 		</form>
 	</body>
