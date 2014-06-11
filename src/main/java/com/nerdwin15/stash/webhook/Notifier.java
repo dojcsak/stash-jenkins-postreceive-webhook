@@ -71,6 +71,11 @@ public class Notifier implements DisposableBean {
    * Field name for the branch options branches property
    */
   public static final String BRANCH_OPTIONS_BRANCHES = "branchOptionsBranches";
+  
+  /**
+   * Field name for the autojobs enabled property
+   */
+  public static final String AUTOJOBS_ENABLED = "autojobsEnabled";
 
   private static final Logger LOGGER = 
       LoggerFactory.getLogger(Notifier.class);

@@ -10,6 +10,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
 import com.atlassian.sal.api.pluginsettings.PluginSettings;
 import com.atlassian.sal.api.pluginsettings.PluginSettingsFactory;
 import com.atlassian.sal.api.transaction.TransactionCallback;
@@ -24,6 +25,10 @@ public class GlobalConfigResource {
     private final PluginSettingsFactory pluginSettingsFactory;
 
     private final TransactionTemplate transactionTemplate;
+    
+    public static final String EXECUTABLE_PATH = GlobalConfig.class.getName() + ".executablePath";
+    
+    public static final String CONFIG_HOME = GlobalConfig.class.getName() + ".configHome";
 
     public GlobalConfigResource(final UserManager userManager, final PluginSettingsFactory pluginSettingsFactory, final TransactionTemplate transactionTemplate) {
         this.userManager = userManager;
@@ -44,8 +49,8 @@ public class GlobalConfigResource {
             public GlobalConfig doInTransaction() {
                 PluginSettings settings = pluginSettingsFactory.createGlobalSettings();
                 GlobalConfig config = new GlobalConfig();
-                config.setExecutablePath((String) settings.get(GlobalConfig.class.getName() + ".executablePath"));
-                config.setConfigHome((String) settings.get(GlobalConfig.class.getName() + ".configHome"));
+                config.setExecutablePath((String) settings.get(EXECUTABLE_PATH));
+                config.setConfigHome((String) settings.get(CONFIG_HOME));
                 return config;
             }
         })).build();
@@ -65,8 +70,8 @@ public class GlobalConfigResource {
             @Override
             public Object doInTransaction() {
                 PluginSettings pluginSettings = pluginSettingsFactory.createGlobalSettings();
-                pluginSettings.put(GlobalConfig.class.getName() + ".executablePath", config.getExecutablePath());
-                pluginSettings.put(GlobalConfig.class.getName() + ".configHome", config.getConfigHome());
+                pluginSettings.put(EXECUTABLE_PATH, config.getExecutablePath());
+                pluginSettings.put(CONFIG_HOME, config.getConfigHome());
 
                 return null;
             }
