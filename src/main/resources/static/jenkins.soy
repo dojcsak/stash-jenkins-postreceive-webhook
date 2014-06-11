@@ -90,15 +90,15 @@
     
     <hr />
     
-    <h3>{stash_i18n('stash.webhook.jenkinsAutojob.label', 'Jenkins Autojob')}</h3>
+    <h3>{stash_i18n('stash.webhook.jenkinsAutojobs.label', 'Jenkins Autojobs')}</h3>
     
     {call widget.aui.form.checkbox}
-    	{param id: 'autojobEnabled' /}
-        {param checked: $config['autojobEnabled'] /}
+    	{param id: 'autojobsEnabled' /}
+        {param checked: $config['autojobsEnabled'] /}
         {param labelContent}
-            {stash_i18n('stash.webhook.autojobEnabled.label', 'Enable Jenkins Autojob')}
+            {stash_i18n('stash.webhook.autojobsEnabled.label', 'Enable Jenkins Autojobs')}
         {/param}
-        {param description: stash_i18n('stash.webhook.autojobEnabled.description', 'Automatically create or delete a jenkins job when a branch is created or deleted.') /}
+        {param description: stash_i18n('stash.webhook.autojobsEnabled.description', 'Automatically create or delete a jenkins job when a branch is created or deleted.') /}
     {/call}
     
     <script>
