@@ -1,7 +1,11 @@
 package com.nerdwin15.stash.webhook;
 
 import com.atlassian.event.api.EventListener;
+import com.atlassian.stash.branch.BranchChangedEvent;
+import com.atlassian.stash.branch.BranchDeletedEvent;
+import com.atlassian.stash.event.RepositoryPushEvent;
 import com.atlassian.stash.event.RepositoryRefsChangedEvent;
+import com.atlassian.stash.event.pull.PullRequestMergedEvent;
 import com.nerdwin15.stash.webhook.service.SettingsService;
 import com.nerdwin15.stash.webhook.service.eligibility.EligibilityFilterChain;
 import com.nerdwin15.stash.webhook.service.eligibility.EventContext;
@@ -44,11 +48,16 @@ public class RepositoryChangeListener {
       return;
     }
     
+    if (event instanceof BranchChangedEvent || event instanceof BranchDeletedEvent) {
+        return;
+    }
+    
     String user = (event.getUser() != null) ? event.getUser().getName() : null;
     EventContext context = new EventContext(event, event.getRepository(), user);
     
-    if (filterChain.shouldDeliverNotification(context))
+    if (filterChain.shouldDeliverNotification(context)) {
       notifier.notifyBackground(context.getRepository());
+    }
   }
 
 }
